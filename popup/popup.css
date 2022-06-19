@@ -1,0 +1,47 @@
+:root{
+    --border-radius:10px;
+    --border-radius-large:15px;
+    --primary-font-family:"Source Code Pro",Monaco,Candara,Serif,consolas;
+    padding:0;
+    margin:0;
+    
+}
+body{
+    padding:0;
+    /*width:21rem;*/
+    background:rgba(3,3,3,0.1);
+    border-radius:var(--border-radius);
+    font-family:var(--primary-font-family);
+}
+input[type="text"]{
+    padding:0.5rem;
+}
+
+.input-name{
+    border-radius:var(--border-radius);
+    border:none;
+    outline:1px solid #030303;
+}
+.form-main{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:1rem;
+}
+.btn{
+    background-color:rgba(10,10,200,1);
+    border-radius:var(--border-radius-large);
+    cursor:pointer;
+    color:white;
+    padding: 0.3rem 0.7rem;
+    font-size:1rem;
+    font-family:inherit;
+}
+
+.btn-tab-renamer{
+    box-shadow:none;
+    border:none;
+    
+}
+
