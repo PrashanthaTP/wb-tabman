@@ -28,5 +28,9 @@
             },
             "description":"Open popup"
         }
-    }
+    },
+    "permissions":["storage","tabs"],
+    "host_permissions":[
+        "http://127.0.0.1/*"
+    ]
 }
