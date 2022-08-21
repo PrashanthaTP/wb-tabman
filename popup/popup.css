@@ -1,7 +1,7 @@
 :root{
     --border-radius:10px;
     --border-radius-large:15px;
-    --primary-font-family:"Source Code Pro",Monaco,Candara,Serif,consolas;
+    --primary-font-family:Menlo,"Source Code Pro",Monaco,Candara,Serif,consolas;
     padding:0;
     margin:0;
     
@@ -42,6 +42,5 @@ input[type="text"]{
 .btn-tab-renamer{
     box-shadow:none;
     border:none;
-    
 }
 
