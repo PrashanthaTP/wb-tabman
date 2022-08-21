@@ -28,5 +28,6 @@
             },
             "description":"Open popup"
         }
-    }
+    },
+    "permissions":["storage","tabs"]
 }
