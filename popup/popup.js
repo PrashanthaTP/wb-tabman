@@ -6,7 +6,7 @@ const inputName = document.getElementById("input-name");
 //const Http = require('http')
 
 
-const makeServerRequest2 = () =>{
+const makeServerRequest2 = async () =>{
 
     const options = {
         url : "127.0.0.1",
@@ -14,7 +14,15 @@ const makeServerRequest2 = () =>{
         path : "/"
     }
     //fetch(`${options.url}:${options.port}`).then(res=>res.json()).then(res=>console.log(res)).catch(err=>console.error(err))
-    fetch("http://127.0.0.1:8000").then(res=>res.json()).then(res=>console.log(res)).catch(err=>console.error(err))
+    let tabName = ""
+    await fetch("http://127.0.0.1:8000").then(res=>res.json())
+        .then(res=>{
+            console.log(res)
+            tabName = res
+        })
+        .catch(err=>console.error(err))
+
+    return tabName
 }
 const makeServerRequest = () =>{
     const options = {
@@ -32,14 +40,19 @@ const makeServerRequest = () =>{
     req.end()
 }
 
-inputName.addEventListener("focus",(e)=>{
+inputName.addEventListener("focus", async (e)=>{
     // related : https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/browserAction/setTitle
     const setTitle = (tabs) => {
         e.target.value = tabs[0].title
     }
 
     chrome.tabs.query({active:true,currentWindow:true},setTitle);
-    makeServerRequest2()
+    const tabName = await makeServerRequest2()
+    const setTitle2 = (tabs) => {
+        console.log("Setting tab title ",tabName)
+        e.target.value = Object.keys(tabName)[0]
+    }
+    chrome.tabs.query({active:true,currentWindow:true},setTitle2);
 }
 )
 //callback to send message to content script
