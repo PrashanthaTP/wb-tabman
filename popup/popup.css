@@ -1,20 +1,38 @@
 :root{
+    --background-primary: #030303;
+    --background-secondary: #0851c1;
+    --color-secondary: #a1baff;
     --border-radius:10px;
     --border-radius-large:15px;
-    --primary-font-family:"Source Code Pro",Monaco,Candara,Serif,consolas;
+    --primary-font-family:serif,"Source Code Pro",Monaco,Candara,Serif,consolas;
     padding:0;
     margin:0;
-    
 }
+
 body{
     padding:0;
+    margin: 0;
     /*width:21rem;*/
-    background:rgba(3,3,3,0.1);
+    background:var(--background-primary);
     border-radius:var(--border-radius);
     font-family:var(--primary-font-family);
+    width: 35rem;
+}
+.container{
+    width:30rem;
+    padding: 0.5rem;
+    margin: 0 auto;
 }
 input[type="text"]{
+    width: 90%;
     padding:0.5rem;
+    background: var(--background-secondary);
+    color: var(--color-secondary); 
+    box-shadow: inset -1px -1px 1px 1px rgba(255,255,255,0.6);
+}
+input::placeholder{
+    color: white;
+    opacity: 0.3;
 }
 
 .input-name{
@@ -28,9 +46,9 @@ input[type="text"]{
     justify-content:center;
     align-items:center;
     gap:1rem;
+    width:100%;
 }
 .btn{
-    background-color:rgba(10,10,200,1);
     border-radius:var(--border-radius-large);
     cursor:pointer;
     color:white;
@@ -42,6 +60,7 @@ input[type="text"]{
 .btn-tab-renamer{
     box-shadow:none;
     border:none;
-    
+    background-color:hsl(220.88deg 90.48% 41.18%);;
+    color: var(--color-secondary); 
 }
 
