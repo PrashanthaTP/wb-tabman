@@ -1,10 +1,17 @@
+/*
+ *font-family: 'Lobster', cursive;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Poppins', sans-serif;
+font-family: 'Source Code Pro', monospace;
+*/
 :root{
     --background-primary: #030303;
     --background-secondary: #0851c1;
     --color-secondary: #a1baff;
     --border-radius:10px;
     --border-radius-large:15px;
-    --primary-font-family:serif,"Source Code Pro",Monaco,Candara,Serif,consolas;
+    --primary-font-family:'Montserrat',serif,"Source Code Pro",Monaco,Candara,Serif,consolas;
+    --primary-font-family:'Poppins',serif,"Source Code Pro",Monaco,Candara,Serif,consolas;
     padding:0;
     margin:0;
 }
@@ -31,6 +38,7 @@ input[type="text"]{
     box-shadow: inset -1px -1px 1px 1px rgba(255,255,255,0.6);
 }
 input::placeholder{
+    font-family:inherit;
     color: white;
     opacity: 0.3;
 }
@@ -53,7 +61,7 @@ input::placeholder{
     cursor:pointer;
     color:white;
     padding: 0.3rem 0.7rem;
-    font-size:1rem;
+    font-size:0.8rem;
     font-family:inherit;
 }
 
