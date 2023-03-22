@@ -4,16 +4,26 @@
 const form = document.getElementById("form-main");
 const inputName = document.getElementById("input-name");
 //callback to send message to content script
-const sendMessage = (tabs)=>{
+const sendMessage = (tabs) => {
     chrome.tabs.sendMessage(tabs[0].id,
-                            {action:"RENAME_TAB",
-                            props:{name:inputName.value}
-                            });
+        {
+            action: "RENAME_TAB",
+            props: { name: inputName.value }
+        });
+};
+const setInitialInputValue = async () => {
+    const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
+    const response = await chrome.tabs.sendMessage(tab.id,
+        {
+            action: "GET_TAB_TITLE",
+            props: {}
+        });
+    inputName.value = response.title;
 };
 
-form.onsubmit=(e)=>{
+form.onsubmit = (e) => {
     e.preventDefault();
-    chrome.tabs.query({active:true,currentWindow:true},sendMessage);
+    chrome.tabs.query({ active: true, currentWindow: true }, sendMessage);
     window.close();
 };
 
@@ -22,4 +32,5 @@ form.onsubmit=(e)=>{
  */
 window.addEventListener('DOMContentLoaded', (event) => {
     inputName.focus();
+    setInitialInputValue();
 });
