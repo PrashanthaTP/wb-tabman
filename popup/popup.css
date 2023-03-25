@@ -35,7 +35,10 @@ input[type="text"]{
     padding:0.5rem;
     background: var(--background-secondary);
     color: var(--color-secondary); 
-    box-shadow: inset -1px -1px 1px 1px rgba(255,255,255,0.6);
+    font-famlily:var(--primary-font-family);
+}
+input:focus{
+    box-shadow: inset 1px 0px 1px 1px rgba(255,255,255,0.6);
 }
 input::placeholder{
     font-family:inherit;
