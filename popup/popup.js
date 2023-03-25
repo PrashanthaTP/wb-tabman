@@ -12,13 +12,17 @@ const sendMessage = (tabs) => {
         });
 };
 const setInitialInputValue = async () => {
-    const [tab] = await chrome.tabs.query({active: true, lastFocusedWindow: true});
-    const response = await chrome.tabs.sendMessage(tab.id,
-        {
-            action: "GET_TAB_TITLE",
-            props: {}
-        });
-    inputName.value = response.title;
+    const callback = async ([tab]) => {
+        await chrome.tabs.sendMessage(tab.id,
+            {
+                action: "GET_TAB_TITLE",
+                props: {}
+            }, async(response) => {
+                console.log(response)
+                inputName.value = response.title;
+            });
+    }
+    chrome.tabs.query({ active: true, currentWindow: true }, callback);
 };
 
 form.onsubmit = (e) => {
