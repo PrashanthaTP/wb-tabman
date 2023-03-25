@@ -16,4 +16,5 @@ const messageListener = (message,sender,sendResponse)=>{
 }
 
 
+console.log("Listener attached")
 chrome.runtime.onMessage.addListener(messageListener);

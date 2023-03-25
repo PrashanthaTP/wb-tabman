@@ -4,25 +4,19 @@
 const form = document.getElementById("form-main");
 const inputName = document.getElementById("input-name");
 //callback to send message to content script
-const sendMessage = (tabs) => {
-    chrome.tabs.sendMessage(tabs[0].id,
+const sendMessage = async(tabs) => {
+    await chrome.tabs.sendMessage(tabs[0].id,
         {
             action: "RENAME_TAB",
             props: { name: inputName.value }
         });
 };
-const setInitialInputValue = async () => {
-    const callback = async ([tab]) => {
-        await chrome.tabs.sendMessage(tab.id,
-            {
-                action: "GET_TAB_TITLE",
-                props: {}
-            }, async(response) => {
-                console.log(response)
-                inputName.value = response.title;
-            });
+const setInitialInputValue =  () => {
+    const setTitle = (tabs) =>{
+        console.log(tabs)
+        inputName.value = tabs[0].title || ""
     }
-    chrome.tabs.query({ active: true, currentWindow: true }, callback);
+    chrome.tabs.query({ active: true, currentWindow: true }, setTitle);
 };
 
 form.onsubmit = (e) => {
