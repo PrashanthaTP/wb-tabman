@@ -9,7 +9,7 @@ font-family: 'Source Code Pro', monospace;
     --background-secondary: #0851c1;
     --color-secondary: #a1baff;
     --border-radius:10px;
-    --border-radius-large:15px;
+    --border-radius-large:1rem;
     --primary-font-family:'Montserrat',serif,"Source Code Pro",Monaco,Candara,Serif,consolas;
     --primary-font-family:'Poppins',serif,"Source Code Pro",Monaco,Candara,Serif,consolas;
     padding:0;
@@ -35,10 +35,11 @@ input[type="text"]{
     padding:0.5rem;
     background: var(--background-secondary);
     color: var(--color-secondary); 
-    font-famlily:var(--primary-font-family);
+    font-family:var(--primary-font-family);
+    border: 2px solid rgba(255,255,255,0);
 }
 input:focus{
-    box-shadow: inset 1px 0px 1px 1px rgba(255,255,255,0.6);
+    border: 2px solid rgba(255,255,255,0.6);
 }
 input::placeholder{
     font-family:inherit;
@@ -47,7 +48,7 @@ input::placeholder{
 }
 
 .input-name{
-    border-radius:var(--border-radius);
+    border-radius:var(--border-radius-large);
     border:none;
     outline:1px solid #030303;
 }
@@ -72,6 +73,11 @@ input::placeholder{
     box-shadow:none;
     border:none;
     background-color:hsl(220.88deg 90.48% 41.18%);;
+    width: 7rem;
     color: var(--color-secondary); 
 }
 
+
+.btn-tab-renamer:hover{
+    font-weight: bold;
+}
