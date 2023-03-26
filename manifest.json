@@ -29,5 +29,10 @@
             "description":"Open popup"
         }
     },
-    "permissions":["tabs","activeTab"]
+    "permissions":["tabs","activeTab","notifications"],
+"web_accessible_resources": [
+    {"resources":["docs/wb-tabman-logo.png", "images/notification_icon.png"],
+    "matches":["<all_urls>"]
+    }
+  ]
 }

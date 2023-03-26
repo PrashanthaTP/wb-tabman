@@ -4,15 +4,27 @@
 const form = document.getElementById("form-main");
 const inputName = document.getElementById("input-name");
 //callback to send message to content script
-const sendMessage = async(tabs) => {
-    await chrome.tabs.sendMessage(tabs[0].id,
-        {
-            action: "RENAME_TAB",
-            props: { name: inputName.value }
+const sendMessage = async (tabs) => {
+    try {
+        await chrome.tabs.sendMessage(tabs[0].id,
+            {
+                action: "RENAME_TAB",
+                props: { name: inputName.value }
+            });
+    }
+    catch (e) {
+        //notification api cannot be used in popup,content_script
+        chrome.runtime.sendMessage({
+            action: "SHOW_NOTIFICATION",
+            props: { title: "Sorry, Couldn't rename the tab",
+                message: "ooops!",
+                iconUrl : "/docs/wb-tabman-logo.png",
+                type: 'basic' }
         });
-};
-const setInitialInputValue =  () => {
-    const setTitle = (tabs) =>{
+    };
+}
+const setInitialInputValue = () => {
+    const setTitle = (tabs) => {
         console.log(tabs)
         inputName.value = tabs[0].title || ""
     }
@@ -21,7 +33,11 @@ const setInitialInputValue =  () => {
 
 form.onsubmit = (e) => {
     e.preventDefault();
-    chrome.tabs.query({ active: true, currentWindow: true }, sendMessage);
+    try {
+        chrome.tabs.query({ active: true, currentWindow: true }, sendMessage);
+    } catch (e) {
+        alert(e);
+    }
     window.close();
 };
 
@@ -31,4 +47,5 @@ form.onsubmit = (e) => {
 window.addEventListener('DOMContentLoaded', (event) => {
     inputName.focus();
     setInitialInputValue();
+
 });
