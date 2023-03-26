@@ -14,13 +14,6 @@ const sendMessage = async (tabs) => {
     }
     catch (e) {
         //notification api cannot be used in popup,content_script
-        chrome.runtime.sendMessage({
-            action: "SHOW_NOTIFICATION",
-            props: { title: "Sorry, Couldn't rename the tab",
-                message: "ooops!",
-                iconUrl : "/docs/wb-tabman-logo.png",
-                type: 'basic' }
-        });
     };
 }
 const setInitialInputValue = () => {
