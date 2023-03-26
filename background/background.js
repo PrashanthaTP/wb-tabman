@@ -1,3 +1,4 @@
+let db = {}
 const commandListener = (command) =>{
     console.log("command listener",command);
     console.log(chrome.action)
@@ -12,4 +13,18 @@ const commandListener = (command) =>{
             break
     }
 }
+
+const messageListner = (request,sender,sendMessage) =>{
+    const {action,props} = request;
+    switch(action){
+        case "RENAME_TAB_COMPLETE" : 
+            const {tabId,tabTitle} = props;
+            db[tabId] = tabTitle;  
+            break;
+        default:
+            break;
+    }
+}
 chrome.commands.onCommand.addListener(commandListener)
+chrome.runtime.onMessage.addListener(messageListner)
+
