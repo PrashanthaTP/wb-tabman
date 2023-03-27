@@ -11,6 +11,11 @@ const sendMessage = async (tabs) => {
                 action: "RENAME_TAB",
                 props: { name: inputName.value }
             });
+        await chrome.runtime.sendMessage("",
+            {
+                action: "RENAME_TAB_COMPLETE",
+                props: { tabId: tabs[0].id, tabTitle: inputName.value }
+            }, (response) => { });
     }
     catch (e) {
         //notification api cannot be used in popup,content_script

@@ -29,5 +29,5 @@
             "description":"Open popup"
         }
     },
-    "permissions":["tabs","activeTab"]
+    "permissions":["tabs","activeTab","scripting"]
 }
