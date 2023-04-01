@@ -69,6 +69,21 @@ const tabUpdatedListener = (tabId, changeInfo, tab) => {
     delete db[tabId];
 };
 
+const tabRemovedListener = ( tabId, removeInfo ) => {
+    if ( tabId in db ) {
+        delete db[ tabId ];
+    }
+}
+const tabReplacedListener = ( addedTabId, removedTabId ) => {
+    if ( !( removedTabId in db ) ) {
+        return;
+    }
+    db[ addedTabId ] = db[ removedTabId ];
+    delete db[ removedTabId ];
+
+}
 chrome.commands.onCommand.addListener(commandListener);
 chrome.runtime.onMessage.addListener(messageListener);
 chrome.tabs.onUpdated.addListener(tabUpdatedListener);
+chrome.tabs.onRemoved.addListener(tabRemovedListener)
+chrome.tabs.onReplaced.addListener(tabReplacedListener)
