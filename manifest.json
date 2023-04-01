@@ -30,5 +30,5 @@
             "description": "Open popup"
         }
     },
-    "permissions": ["tabs", "activeTab", "scripting"]
+    "permissions": ["tabs", "activeTab", "scripting","storage"]
 }
