@@ -4,6 +4,7 @@ const messageListener = (message,sender,sendResponse)=>{
     switch(message.action){
         case "RENAME_TAB":
             document.title=props.name;
+            return true
             break;
         case "GET_TAB_TITLE":
             console.log("Sending response : ",document.title);
