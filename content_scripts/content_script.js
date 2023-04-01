@@ -1,9 +1,10 @@
 const messageListener = (message,sender,sendResponse)=>{
     const {action,props} = message;
-            console.log("Inside message listener");
-    switch(message.action){
+            console.log("TabMan: Inside content script message listener");
+    switch(action){
         case "RENAME_TAB":
             document.title=props.name;
+            sendResponse({title: document.title})
             return true
             break;
         case "GET_TAB_TITLE":

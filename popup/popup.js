@@ -19,6 +19,7 @@ const sendMessage = async (tabs) => {
     }
     catch (e) {
         //notification api cannot be used in popup,content_script
+        console.error( "TabMan: Error during renaming title : ", e );
     };
 }
 const setInitialInputValue = () => {
@@ -27,6 +28,10 @@ const setInitialInputValue = () => {
         inputName.value = tabs[0].title || ""
     }
     chrome.tabs.query({ active: true, currentWindow: true }, setTitle);
+    /*
+    chrome.runtime.sendMessage( "", { action: "TEST_BG_LISTENER", props: {} }, ( response ) => {
+        console.log("TabMan: Response to check")
+    })*/
 };
 
 form.onsubmit = (e) => {
@@ -45,5 +50,4 @@ form.onsubmit = (e) => {
 window.addEventListener('DOMContentLoaded', (event) => {
     inputName.focus();
     setInitialInputValue();
-
 });
