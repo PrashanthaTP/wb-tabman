@@ -1,5 +1,6 @@
 //https://docs.microsoft.com/en-us/microsoft-edge/extensions-chromium/getting-started/part2-content-scripts
 //https://betterprogramming.pub/the-ultimate-guide-to-building-a-chrome-extension-4c01834c63ec
+import { ACTIONS } from "../utils/index.js";
 
 const form = document.getElementById("form-main");
 const inputName = document.getElementById("input-name");
@@ -8,12 +9,12 @@ const sendMessage = async (tabs) => {
     try {
         await chrome.tabs.sendMessage(tabs[0].id,
             {
-                action: "RENAME_TAB",
+                action: ACTIONS.RENAME_TAB,
                 props: { name: inputName.value }
             });
         await chrome.runtime.sendMessage("",
             {
-                action: "RENAME_TAB_COMPLETE",
+                action: ACTIONS.RENAME_TAB_COMPLETE,
                 props: { tabId: tabs[0].id, tabTitle: inputName.value }
             }, (response) => { });
     }
@@ -24,12 +25,11 @@ const sendMessage = async (tabs) => {
 }
 const setInitialInputValue = () => {
     const setTitle = (tabs) => {
-        console.log(tabs)
         inputName.value = tabs[0].title || ""
     }
     chrome.tabs.query({ active: true, currentWindow: true }, setTitle);
     /*
-    chrome.runtime.sendMessage( "", { action: "TEST_BG_LISTENER", props: {} }, ( response ) => {
+    chrome.runtime.sendMessage( "", { action: ACTIONS.TEST_BG_LISTENER, props: {} }, ( response ) => {
         console.log("TabMan: Response to check")
     })*/
 };

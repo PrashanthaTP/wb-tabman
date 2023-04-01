@@ -15,3 +15,9 @@
 + [MDN Docs: scripting.executeScript](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/scripting/executeScript)
 + [Stackoverflow; https://stackoverflow.com/questions/9270782/how-to-alter-title-of-present-tab-using-chrome-extension](https://stackoverflow.com/questions/9270782/how-to-alter-title-of-present-tab-using-chrome-extension)
 + [Chrome Docs: `chrome.scripting.executeScript`](https://developer.chrome.com/docs/extensions/reference/scripting/#method-executeScript)
++ [Chrome Docs: Passing arg to `func` callback of `chrome.scripting.executeScript`](https://developer.chrome.com/docs/extensions/reference/scripting/#runtime-functions)
+
+## Port Errors
+
++ [Stackoverflow](https://stackoverflow.com/questions/54126343/how-to-fix-unchecked-runtime-lasterror-the-message-port-closed-before-a-respon)
++ Insufficient Permissions in Manifest json.
